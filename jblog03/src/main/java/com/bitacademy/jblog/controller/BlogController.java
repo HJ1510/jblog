@@ -19,8 +19,8 @@ public class BlogController {
 		Long postNo = 0L;
 		
 		if(pathNo1.isPresent()) {
-			categoeyNo = pathNo2.get();
-		} else if(pathNo1.isPresent()) {
+			categoeyNo = pathNo1.get();
+		} else if(pathNo2.isPresent()) {
 			categoeyNo = pathNo1.get();
 			postNo = pathNo2.get();
 		}

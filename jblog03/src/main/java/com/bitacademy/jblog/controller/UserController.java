@@ -24,7 +24,6 @@ public class UserController {
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(UserVo userVo, BlogVo blogVo, CategoryVo categoryVo) {
-//		userService.join(userVo);
 		userService.join(userVo, blogVo, categoryVo);
 		return "redirect:/user/joinsuccess";
 	}
@@ -33,4 +32,15 @@ public class UserController {
 	public String joinsuccess() {
 		return "user/joinsuccess";
 	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login() {
+		return "user/login";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String login() {
+		return "user/login";
+	}
+	
 }

@@ -15,7 +15,7 @@ public class BlogRepository {
 	public void insert(BlogVo blogVo) {
 		blogVo.setProfile("profile");		
 		sqlSession.insert("blog.insert", blogVo);
-		System.out.println("BlogRepository:"+blogVo);
+//		System.out.println("BlogRepository:"+blogVo);
 	}
 
 }

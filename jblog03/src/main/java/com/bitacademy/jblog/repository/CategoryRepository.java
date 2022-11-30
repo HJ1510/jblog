@@ -12,10 +12,9 @@ public class CategoryRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void insert(CategoryVo categoryVo) {
-		
+	public void insert(CategoryVo categoryVo) {		
 		sqlSession.insert("category.insert", categoryVo);
-		System.out.println("CategoryRepository:"+categoryVo);
+//		System.out.println("CategoryRepository:"+categoryVo);
 	}
 
 

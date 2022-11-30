@@ -1,5 +1,8 @@
 package com.bitacademy.jblog.service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +25,6 @@ public class UserService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
-//	public void join(UserVo userVo) {
-//		userRepository.insert(userVo);	
-//	}
-	
-
 	public void join(UserVo userVo, BlogVo blogVo, CategoryVo categoryVo) {		
 		blogVo.setId(userVo.getId());
 		blogVo.setName(userVo.getName());
@@ -34,10 +32,14 @@ public class UserService {
 		userRepository.insert(userVo);
 		blogRepository.insert(blogVo);
 		categoryRepository.insert(categoryVo);
-		System.out.println("userVo:"+userVo);
-		System.out.println("blogVo:"+blogVo);
-		System.out.println("categoryVo:"+categoryVo);
+	}	
+
+	public UserVo findUser(HttpServletRequest request, HttpServletResponse response, Object handler, UserVo userVo) {
+		return findUser(userVo.getId(), userVo.getPassword());
 	}
 
+	private UserVo findUser(String id, String password) {
+		return userRepository.findByIdAndPassword(id, password);
+	}
 
 }

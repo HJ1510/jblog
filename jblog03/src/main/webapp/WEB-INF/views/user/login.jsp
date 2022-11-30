@@ -13,7 +13,7 @@
 <body>
 	<div class="center-content">
 		<jsp:include page="/WEB-INF/views/includes/logomenu.jsp"/>
-		<form class="login-form">
+		<form class="login-form" >
       		<label>아이디</label> <input type="text" name="id">
       		<label>패스워드</label> <input type="text" name="password">
       		<input type="submit" value="로그인">

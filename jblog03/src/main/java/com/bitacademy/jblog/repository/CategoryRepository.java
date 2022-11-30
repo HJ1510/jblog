@@ -4,18 +4,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.bitacademy.jblog.vo.UserVo;
+import com.bitacademy.jblog.vo.CategoryVo;
 
 @Repository
-public class UserRepository {
-
+public class CategoryRepository {
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void insert(UserVo userVo) {
-//		sqlSession.insert("user.insert", userVo);
-		System.out.println("UserRepository:"+userVo);
+	public void insert(CategoryVo categoryVo) {
+//		sqlSession.insert("category.insert", categoryVo);
+		System.out.println("CategoryRepository:"+categoryVo);
 	}
 
-}
 
+}

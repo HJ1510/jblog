@@ -29,6 +29,7 @@ public class UserService {
 
 	public void join(UserVo userVo, BlogVo blogVo, CategoryVo categoryVo) {		
 		blogVo.setId(userVo.getId());
+		blogVo.setName(userVo.getName());
 		categoryVo.setId(userVo.getId());
 		userRepository.insert(userVo);
 		blogRepository.insert(blogVo);

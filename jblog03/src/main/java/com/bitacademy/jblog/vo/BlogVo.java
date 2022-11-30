@@ -5,6 +5,15 @@ public class BlogVo {
 	private String id;
 	private String title;
 	private String profile;
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getId() {
 		return id;
@@ -32,7 +41,7 @@ public class BlogVo {
 
 	@Override
 	public String toString() {
-		return "BlogVo [id=" + id + ", title=" + title + ", profile=" + profile + "]";
+		return "BlogVo [id=" + id + ", title=" + title + ", profile=" + profile + ", name=" + name + "]";
 	}
 
 

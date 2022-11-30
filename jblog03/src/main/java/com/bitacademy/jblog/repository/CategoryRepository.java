@@ -13,7 +13,8 @@ public class CategoryRepository {
 	private SqlSession sqlSession;
 	
 	public void insert(CategoryVo categoryVo) {
-//		sqlSession.insert("category.insert", categoryVo);
+		
+		sqlSession.insert("category.insert", categoryVo);
 		System.out.println("CategoryRepository:"+categoryVo);
 	}
 

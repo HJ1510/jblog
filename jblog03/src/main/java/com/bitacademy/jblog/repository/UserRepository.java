@@ -13,7 +13,7 @@ public class UserRepository {
 	private SqlSession sqlSession;
 	
 	public void insert(UserVo userVo) {
-//		sqlSession.insert("user.insert", userVo);
+		sqlSession.insert("user.insert", userVo);
 		System.out.println("UserRepository:"+userVo);
 	}
 

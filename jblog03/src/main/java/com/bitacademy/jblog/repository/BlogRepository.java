@@ -13,7 +13,8 @@ public class BlogRepository {
 	private SqlSession sqlSession;
 
 	public void insert(BlogVo blogVo) {
-//		sqlSession.insert("blog.insert", blogVo);
+		blogVo.setProfile("profile");		
+		sqlSession.insert("blog.insert", blogVo);
 		System.out.println("BlogRepository:"+blogVo);
 	}
 

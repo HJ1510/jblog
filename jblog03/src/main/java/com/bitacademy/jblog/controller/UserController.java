@@ -1,7 +1,5 @@
 package com.bitacademy.jblog.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,9 +38,5 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(HttpSession session, UserVo userVo) {
-		return "redirect:/";
-	}
 	
 }

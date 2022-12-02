@@ -21,7 +21,16 @@
 	<mvc:default-servlet-handler/>
 	
 	<!-- Interceptors -->
-
+	<mvc:interceptors>
+        <mvc:interceptor>
+        	<mvc:mapping path="/user/login" /> 
+    	<bean class="com.bitacademy.jblog.security.LoginInterceptor" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+        	<mvc:mapping path="/user/logout" /> 
+    	<bean class="com.bitacademy.jblog.security.LogoutInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors> 
 	
 	<!-- Message Source -->
 

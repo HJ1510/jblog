@@ -5,9 +5,17 @@
 
 <h1 class="logo">JBlog</h1>
 <ul class="menu">
-	<li><a href="${pageContext.request.contextPath }">메인으로</a></li>
-	<li><a href="${pageContext.request.contextPath }/user/login">로그인</a></li>
-	<li><a href="${pageContext.request.contextPath }/user/join">회원가입</a></li>
-	<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></li>
-	<li><a href="${pageContext.request.contextPath }/blog/index">내블로그</a></li>
+	<c:choose>
+		<c:when test="${empty authUser }">
+			<li><a href="${pageContext.request.contextPath }">메인으로</a></li>
+			<li><a href="${pageContext.request.contextPath }/user/login">로그인</a></li>
+			<li><a href="${pageContext.request.contextPath }/user/join">회원가입</a></li>
+			<li><a href="${pageContext.request.contextPath }/blog/index">내블로그</a></li>
+		</c:when>
+		<c:otherwise>
+			<li><a href="${pageContext.request.contextPath }">메인으로</a></li>
+			<li><a href="${pageContext.request.contextPath }/user/logout"> ${authUser.name } 로그아웃</a></li>
+			<li><a href="${pageContext.request.contextPath }/blog/index">내블로그</a></li>
+		</c:otherwise>
+	</c:choose>
 </ul>

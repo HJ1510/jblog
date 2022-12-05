@@ -26,5 +26,11 @@ insert into blog values(id, title, profile);
 insert into category values(null, title, id);
 
 -- user login
-select name from user where id='ddo@gmail.com' and password='1234';
+select id, name from user where id='ddo' and password='1234';
+
+
+-- blog index
+SELECT * 
+from user u , blog b , category c , post p 
+where u.id = b.id and b.id = c.id and c.no = p.category_no; 
 

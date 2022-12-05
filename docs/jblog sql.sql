@@ -1,8 +1,10 @@
 create database jblog;
 
-create user 'jblog'@'192.168.0.95' identified by 'jblog';
+drop user'jblog'@'192.168.0.95';
 
-grant all privileges on jblog.* to 'jblog'@'192.168.0.95';
+create user 'jblog'@'192.168.0.%' identified by 'jblog';
+
+grant all privileges on jblog.* to 'jblog'@'192.168.0.%';
 
 flush privileges;
 

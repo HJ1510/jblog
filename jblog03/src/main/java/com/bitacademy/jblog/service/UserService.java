@@ -32,6 +32,7 @@ public class UserService {
 	}
 
 	public UserVo findUser(UserVo userVo) {
+		System.out.println("UserService:"+userVo);
 		return findUser(userVo.getId(), userVo.getPassword());
 	}
 

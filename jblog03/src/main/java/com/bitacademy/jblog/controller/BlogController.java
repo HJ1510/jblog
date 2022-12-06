@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bitacademy.jblog.service.BlogService;
+import com.bitacademy.jblog.service.CategoryService;
 import com.bitacademy.jblog.vo.BlogVo;
+import com.bitacademy.jblog.vo.CategoryVo;
 
 @Controller
 @RequestMapping("/{id:(?!assets).*}")
@@ -18,6 +20,9 @@ public class BlogController {
 	
 	@Autowired
 	private BlogService blogService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	@RequestMapping({"", "/{pathNo1}", "/{pathNo1}/{pathNo2}"})
 	public String index(
@@ -41,7 +46,7 @@ public class BlogController {
 	public String adminBasic(@PathVariable("id") String id, BlogVo blogVo, Model model) { //authuser id==id인지 체크! 
 		blogVo = blogService.findBlog(id);
 		model.addAttribute("blogVo", blogVo);	
-		System.out.println("adminBasic:"+blogVo);
+//		System.out.println("adminBasic:"+blogVo);
 		return "blog/admin-basic";
 	}
 	
@@ -54,7 +59,10 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.GET)
-	public String adminCategory(@PathVariable("id") String id){
+	public String adminCategory(@PathVariable("id") String id, CategoryVo categoryVo, Model model){
+		categoryVo=categoryService.findCategory(id);
+		model.addAttribute("categoryVo", categoryVo);
+		System.out.println("adminCategory:"+categoryVo);
 		return "blog/admin-category";
 	}
 	

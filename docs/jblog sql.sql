@@ -30,7 +30,14 @@ select id, name from user where id='ddo' and password='1234';
 
 
 -- blog index
-SELECT * 
-from user u , blog b , category c , post p 
-where u.id = b.id and b.id = c.id and c.no = p.category_no; 
+SELECT b.title , b.profile , c.no as categoryNo , c.title as categoryTitle , p.title as postTitle , p.contents , p.reg_date as regDate
+from blog b , category c , post p 
+where b.id = c.id and c.no = p.category_no;
+
+-- blog admin
+SELECT id, title, profile from blog b where id='go';
+
+UPDATE blog set title='고길동의 블로그', profile='profile' where id='go';
+-- UPDATE blog set title=#{title } where id=#{id }; <= 파일업로드 구현 후 수정 필요 
+
 

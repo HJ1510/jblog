@@ -11,7 +11,7 @@ import com.bitacademy.jblog.service.UserService;
 import com.bitacademy.jblog.vo.UserVo;
 
 public class LoginInterceptor implements HandlerInterceptor {
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -20,21 +20,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 			throws Exception {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		
+
 		UserVo authUser = userService.findUser(id, password);
-		
-		if(authUser == null) {
+
+		if (authUser == null) {
 			request.setAttribute("id", id);
 			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
 			return false;
-		}		
-		
-		HttpSession session=request.getSession(true);
+		}
+
+		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
 		response.sendRedirect(request.getContextPath());
-		
-		System.out.println("LoginInterceptor:"+authUser);
-		
+
 		return false;
 	}
 

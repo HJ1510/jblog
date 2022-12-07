@@ -14,12 +14,13 @@ select * from `user` u ;
 delete from user;
 desc blog;
 select * from blog b ;
-delete from blog ;
+delete from blog ;3
 desc category;
 select * from category c ;
 delete from category ;
 desc post;
 select * from post p ;
+delete from post ;
 
 insert into user values(id, name, password);
 insert into blog values(id, title, profile);

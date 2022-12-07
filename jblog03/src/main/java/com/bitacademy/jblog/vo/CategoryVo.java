@@ -4,7 +4,9 @@ public class CategoryVo {
 
 	private Long no;
 	private String title;
+	private String desc;
 	private String id;
+	private Long countPost;
 
 	public Long getNo() {
 		return no;
@@ -21,6 +23,14 @@ public class CategoryVo {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
 	public String getId() {
 		return id;
@@ -30,9 +40,18 @@ public class CategoryVo {
 		this.id = id;
 	}
 
+	public Long getCountPost() {
+		return countPost;
+	}
+
+	public void setCountPost(Long countPost) {
+		this.countPost = countPost;
+	}
+
 	@Override
 	public String toString() {
-		return "CategoryVo [no=" + no + ", title=" + title + ", id=" + id + "]";
+		return "CategoryVo [no=" + no + ", title=" + title + ", desc=" + desc + ", id=" + id + ", countPost="
+				+ countPost + "]";
 	}
 
 }

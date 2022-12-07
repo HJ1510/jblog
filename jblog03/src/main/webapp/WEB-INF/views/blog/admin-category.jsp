@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<ul class="admin-menu">
@@ -27,13 +27,17 @@
 		      			<th>설명</th>
 		      			<th>삭제</th>      			
 		      		</tr>
+		      		<c:set var='count' value='${fn:length(list) }'/>
+					<c:forEach items='${list }' var='vo' varStatus='status'>
 					<tr>
-						<td>3</td>
-						<td>미분류</td>
-						<td>10</td>
-						<td>카테고리를 지정하지 않은 경우</td>
+						<td>no${countPost }</td>
+						<td>ti${title }</td>
+						<td>cP${vo.title }</td>
+						<td>desc${categoryvo.countPost }</td>
 						<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
-					</tr>  
+					</tr> 
+					</c:forEach>
+					 
 					<tr>
 						<td>2</td>
 						<td>스프링 스터디</td>
@@ -67,7 +71,7 @@
 		      	</table> 
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 	</div>
 </body>
 </html>

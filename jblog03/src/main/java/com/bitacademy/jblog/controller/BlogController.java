@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.jblog.service.BlogService;
 import com.bitacademy.jblog.service.CategoryService;
@@ -43,10 +44,9 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value={"/admin","/admin/basic"}, method=RequestMethod.GET)
-	public String adminBasic(@PathVariable("id") String id, BlogVo blogVo, Model model) { //authuser id==id인지 체크! 
-		blogVo = blogService.findBlog(id);
-		model.addAttribute("blogVo", blogVo);	
-//		System.out.println("adminBasic:"+blogVo);
+	public String adminBasic(@PathVariable("id") String id, Model model) { //authuser id==id인지 체크! 
+		model.addAttribute("id", id);	
+		System.out.println("adminBasic:"+model);
 		return "blog/admin-basic";
 	}
 	
@@ -55,15 +55,23 @@ public class BlogController {
 		blogVo.setId(blogVo.getId());
 		blogService.updateBlogBasic(blogVo);
 		System.out.println("adminBasic2:"+blogVo);
-		return "blog/admin-basic";
+		return "redirect:/"+id;
 	}
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.GET)
-	public String adminCategory(@PathVariable("id") String id, CategoryVo categoryVo, Model model){
-//		categoryVo=categoryService.findCategory(id);
-//		model.addAttribute("categoryVo", categoryVo);
-//		System.out.println("adminCategory:"+categoryVo);
+	public String adminCategory(@PathVariable("id") String id, Model model){
+		
 		return "blog/admin-category";
+	}
+	
+	@RequestMapping(value={"/admin/category"}, method=RequestMethod.POST)
+	public String adminCategory(
+			@PathVariable("id") String id,
+			@RequestParam(value="title", required=true, defaultValue="") String title,
+			@RequestParam(value="desc", required=true, defaultValue="") String desc, CategoryVo categoryVo){
+		categoryVo.setId(id);
+		System.out.println("adminCategory:"+categoryVo);
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value={"/admin/write"}, method=RequestMethod.GET)

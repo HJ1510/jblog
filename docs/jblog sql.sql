@@ -40,4 +40,13 @@ SELECT id, title, profile from blog b where id='go';
 UPDATE blog set title='고길동의 블로그', profile='profile' where id='go';
 -- UPDATE blog set title=#{title } where id=#{id }; <= 파일업로드 구현 후 수정 필요 
 
+-- admin category
+insert into category values(null, '기본', '카테고리를 지정하지 않은 경우', 'go');
 
+SELECT c.no as no, c.title as title, c.desc, count(p.no) as countPost 
+from category c , post p, blog b 
+where b.id =c.id and c.no =p.category_no and b.id = 'go';
+
+-- admin write
+INSERT into post values(null, '첫 글입니다', '안녕하세요 스프링 공부중입니다', now(), 4);
+INSERT into post values(null, '또치 첫 글', '또치예요 블로그 시작합니다', now(), 5);

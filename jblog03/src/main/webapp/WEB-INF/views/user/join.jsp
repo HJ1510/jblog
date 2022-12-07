@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="center-content">
-		<jsp:include page="/WEB-INF/views/includes/logomenu.jsp"/>
+		<c:import url="/WEB-INF/views/includes/logomenu.jsp"></c:import>
 		<form class="join-form" id="join-form" method="post" action="${pageContext.request.contextPath }/user/join">
 			<label class="block-label" for="name">이름</label>
 			<input id="name"name="name" type="text" value="">

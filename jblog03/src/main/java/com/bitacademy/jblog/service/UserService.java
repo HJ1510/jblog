@@ -28,7 +28,7 @@ public class UserService {
 		categoryVo.setId(userVo.getId());
 		userRepository.insert(userVo);
 		blogRepository.insert(blogVo);
-		categoryRepository.insert(categoryVo);
+		categoryRepository.firstInsert(categoryVo);
 	}
 
 	public UserVo findUser(UserVo userVo) {

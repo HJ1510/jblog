@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
@@ -48,7 +48,7 @@
 				<li><a href="">기타</a></li>
 			</ul>
 		</div>
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 	</div>
 </body>
 </html>

@@ -47,7 +47,7 @@ public class BlogController {
 	public String adminBasic(@PathVariable("id") String id, Model model) { //authuser id==id인지 체크! 
 		model.addAttribute("id", id);	
 		System.out.println("adminBasic:"+model);
-		return "blog/admin-basic";
+		return "blog/admin-basic"; 
 	}
 	
 	@RequestMapping(value={"/admin","/admin/basic"}, method=RequestMethod.POST)

@@ -60,9 +60,9 @@ public class BlogController {
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.GET)
 	public String adminCategory(@PathVariable("id") String id, CategoryVo categoryVo, Model model){
-		categoryVo=categoryService.findCategory(id);
-		model.addAttribute("categoryVo", categoryVo);
-		System.out.println("adminCategory:"+categoryVo);
+//		categoryVo=categoryService.findCategory(id);
+//		model.addAttribute("categoryVo", categoryVo);
+//		System.out.println("adminCategory:"+categoryVo);
 		return "blog/admin-category";
 	}
 	

@@ -4,7 +4,7 @@
 <mapper namespace="category">	
 	<insert id="insert" parameterType="categoryvo"> <!-- insert 말고 다른 것을 써도 되지만 의미적으로 명시해주는 것이 좋음 -->
 		<![CDATA[ 
-		insert into category values(null, '기본', #{id })
+		insert into category values(null, '기본', '카테고리를 지정하지 않은 경우', #{id })
 		]]>
 	</insert>
 </mapper>

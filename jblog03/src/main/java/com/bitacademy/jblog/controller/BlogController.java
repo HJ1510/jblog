@@ -1,5 +1,6 @@
 package com.bitacademy.jblog.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,8 @@ public class BlogController {
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.GET)
 	public String adminCategory(@PathVariable("id") String id, Model model){
-		
+		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
+		model.addAttribute("categoryList", categoryList);
 		return "blog/admin-category";
 	}
 	
@@ -70,8 +72,9 @@ public class BlogController {
 			@RequestParam(value="title", required=true, defaultValue="") String title,
 			@RequestParam(value="desc", required=true, defaultValue="") String desc, CategoryVo categoryVo){
 		categoryVo.setId(id);
+		categoryService.insertCategory(categoryVo);
 		System.out.println("adminCategory:"+categoryVo);
-		return "redirect:/";
+		return "redirect:/"+id+"/admin/category";
 	}
 	
 	@RequestMapping(value={"/admin/write"}, method=RequestMethod.GET)

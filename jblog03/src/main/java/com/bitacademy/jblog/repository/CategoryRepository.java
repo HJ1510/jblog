@@ -21,11 +21,11 @@ public class CategoryRepository {
 	
 	public void insert(CategoryVo categoryVo) {		
 		sqlSession.insert("category.insert", categoryVo);
-//		System.out.println("CategoryRepository:"+categoryVo);
+		System.out.println("CategoryRepository:"+categoryVo);
 	}
 
 	public List<CategoryVo> findAllById(String id) {
-		return sqlSession.selectList("category.findAllById");
+		return sqlSession.selectList("category.findAllById", id);
 	}
 
 

@@ -18,5 +18,7 @@ public class CategoryService {
 		return categoryRepository.findAllById(id);
 	}
 
-
+	public void insertCategory(CategoryVo categoryVo) {
+		categoryRepository.insert(categoryVo);		
+	}
 }

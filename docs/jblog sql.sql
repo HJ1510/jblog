@@ -43,11 +43,23 @@ UPDATE blog set title='고길동의 블로그', profile='profile' where id='go';
 
 -- admin category
 insert into category values(null, '기본', '카테고리를 지정하지 않은 경우', 'go');
+insert into category values(null, '일기', '하루 기록', 'go');
 
-SELECT c.no as no, c.title as title, c.desc, count(p.no) as countPost 
+SELECT c.`no`, c.title , c.`desc`, count(p.no) as countPost -- countPost 구현..ㅜㅜ
 from category c , post p, blog b 
-where b.id =c.id and c.no =p.category_no and b.id = 'go';
+where b.id =c.id and c.no = p.category_no;
+
+SELECT *
+from category c , post p, blog b 
+where b.id =c.id and c.no = p.category_no;
+
+SELECT category_no, COUNT(no) 
+from SELECT *
+	from category c , post p, blog b 
+	where b.id =c.id and c.no = p.category_no
+GROUP by category_no;
 
 -- admin write
-INSERT into post values(null, '첫 글입니다', '안녕하세요 스프링 공부중입니다', now(), 4);
-INSERT into post values(null, '또치 첫 글', '또치예요 블로그 시작합니다', now(), 5);
+INSERT into post values(null, '두번째 글입니다', '스프링 공부진행중', now(), 6);
+INSERT into post values(null, '1208', '일기 씀', now(), 8);
+INSERT into post values(null, '또치 첫 글', '또치예요 블로그 시작합니다', now(), );

@@ -76,7 +76,7 @@ public class BlogController {
 		System.out.println("adminCategory:"+categoryVo);
 		return "redirect:/"+id+"/admin/category";
 	}
-	
+	 
 	@RequestMapping("/admin/category/delete")
 	public String deleteCategory(@PathVariable("id") String id) {
 		return "redirect:/"+id+"/admin/category";

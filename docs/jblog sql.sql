@@ -49,15 +49,8 @@ SELECT c.`no`, c.title , c.`desc`, count(p.no) as countPost -- countPost 구현.
 from category c , post p, blog b 
 where b.id =c.id and c.no = p.category_no;
 
-SELECT *
-from category c , post p, blog b 
-where b.id =c.id and c.no = p.category_no;
+SELECT c.no, c.title, c.desc from category c, blog b where b.id = c.id and b.id = 'go' order by c.no desc;
 
-SELECT category_no, COUNT(no) 
-from SELECT *
-	from category c , post p, blog b 
-	where b.id =c.id and c.no = p.category_no
-GROUP by category_no;
 
 -- admin write
 INSERT into post values(null, '두번째 글입니다', '스프링 공부진행중', now(), 6);

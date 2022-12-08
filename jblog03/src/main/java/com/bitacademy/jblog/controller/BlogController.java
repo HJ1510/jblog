@@ -67,13 +67,18 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.POST)
-	public String adminCategory(
+	public String insertCategory(
 			@PathVariable("id") String id,
 			@RequestParam(value="title", required=true, defaultValue="") String title,
 			@RequestParam(value="desc", required=true, defaultValue="") String desc, CategoryVo categoryVo){
 		categoryVo.setId(id);
 		categoryService.insertCategory(categoryVo);
 		System.out.println("adminCategory:"+categoryVo);
+		return "redirect:/"+id+"/admin/category";
+	}
+	
+	@RequestMapping("/admin/category/delete")
+	public String deleteCategory(@PathVariable("id") String id) {
 		return "redirect:/"+id+"/admin/category";
 	}
 	

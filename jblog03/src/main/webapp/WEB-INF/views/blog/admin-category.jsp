@@ -34,7 +34,7 @@
 						<td>${vo.title }</td>
 						<td>${vo.countPost }</td>
 						<td>${vo.desc }</td>
-						<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
+						<td><a href="${pageContext.request.contextPath }/${id }/admin/category/delete"><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a></td>
 					</tr> 
 					</c:forEach>			  
 				</table>

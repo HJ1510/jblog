@@ -21,4 +21,9 @@ public class CategoryService {
 	public void insertCategory(CategoryVo categoryVo) {
 		categoryRepository.insert(categoryVo);		
 	}
+
+	public void deleteCategory(Long no) {
+		categoryRepository.deleteByNo(no);		
+	}
+
 }

@@ -18,4 +18,11 @@
 		SELECT c.no, c.title, c.desc from category c, blog b where b.id = c.id and b.id = #{id } order by c.no desc 
 		]]>
 	</select>
+	
+	<delete id="deleteByNo" parameterType="Long">
+		<![CDATA[
+		DELETE from category where no = #{no }
+		]]>	
+	</delete>
+	
 </mapper>

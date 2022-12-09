@@ -28,6 +28,10 @@ public class CategoryRepository {
 		return sqlSession.selectList("category.findAllById", id);
 	}
 
+	public void deleteByNo(Long no) {
+		sqlSession.delete("category.deleteByNo", no);
+	}
+
 
 
 }

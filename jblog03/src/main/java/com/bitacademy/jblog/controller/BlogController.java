@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.jblog.service.BlogService;
 import com.bitacademy.jblog.service.CategoryService;
+import com.bitacademy.jblog.service.PostService;
 import com.bitacademy.jblog.vo.BlogVo;
 import com.bitacademy.jblog.vo.CategoryVo;
+import com.bitacademy.jblog.vo.PostVo;
 
 @Controller
 @RequestMapping("/{id:(?!assets).*}")
@@ -25,6 +27,9 @@ public class BlogController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private PostService postService;
 	
 	@RequestMapping({"", "/{pathNo1}", "/{pathNo1}/{pathNo2}"})
 	public String index(
@@ -55,7 +60,6 @@ public class BlogController {
 	public String adminBasic(@PathVariable("id") String id, BlogVo blogVo) { //authuser id==id인지 체크! 
 		blogVo.setId(blogVo.getId());
 		blogService.updateBlogBasic(blogVo);
-		System.out.println("adminBasic2:"+blogVo);
 		return "redirect:/"+id;
 	}
 	
@@ -63,7 +67,6 @@ public class BlogController {
 	public String adminCategory(@PathVariable("id") String id, Model model){
 		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
 		model.addAttribute("categoryList", categoryList);
-		System.out.println(model);
 		return "blog/admin-category";
 	}
 	
@@ -76,19 +79,28 @@ public class BlogController {
 			CategoryVo categoryVo){
 		categoryVo.setId(id);
 		categoryService.insertCategory(categoryVo);
-		System.out.println("adminCategory:"+categoryVo);
 		return "redirect:/"+id+"/admin/category";
 	}
 	 
 	@RequestMapping("/admin/category/delete/{no}")
 	public String deleteCategory(@PathVariable("id") String id, @PathVariable("no") Long no) {
 		categoryService.deleteCategory(no);	
-		System.out.println(no);
 		return "redirect:/"+id+"/admin/category";
 	}
 	
 	@RequestMapping(value={"/admin/write"}, method=RequestMethod.GET)
-	public String adminWrite(@PathVariable("id") String id){
+	public String adminWrite(@PathVariable("id") String id, Model model){
+		List<CategoryVo> categoryList = postService.getCategoryList(id);
+		model.addAttribute("categoryList", categoryList);
 		return "blog/admin-write";
+	}
+	
+	@RequestMapping(value={"/admin/write/{categoryNo}"}, method=RequestMethod.POST)
+	public String adminWrite(@PathVariable("id") String id, @PathVariable("categoryNo") Long categoryNo, PostVo postVo){
+		System.out.println("categoryNo"+categoryNo);
+		System.out.println("postVo"+postVo);
+		postVo.setCategoryNo((long) 14);
+		postService.writePost(postVo);		
+		return "redirect:/"+id;
 	}
 }

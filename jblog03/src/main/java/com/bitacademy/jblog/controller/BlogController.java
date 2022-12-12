@@ -80,8 +80,8 @@ public class BlogController {
 		return "redirect:/"+id+"/admin/category";
 	}
 	 
-	@RequestMapping("/admin/category/delete")
-	public String deleteCategory(@PathVariable("id") String id, @RequestParam("no") Long no) {
+	@RequestMapping("/admin/category/delete/{no}")
+	public String deleteCategory(@PathVariable("id") String id, @PathVariable("no") Long no) {
 		categoryService.deleteCategory(no);	
 		System.out.println(no);
 		return "redirect:/"+id+"/admin/category";

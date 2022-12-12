@@ -59,3 +59,4 @@ DELETE from category where no=11;
 INSERT into post values(null, '두번째 글입니다', '스프링 공부진행중', now(), 6);
 INSERT into post values(null, '1208', '일기 씀', now(), 8);
 INSERT into post values(null, '또치 첫 글', '또치예요 블로그 시작합니다', now(), );
+SELECT c.no as categoryNo, c.title as categoryTitle from category c, blog b where b.id = c.id and b.id = 'go' order by c.no asc 

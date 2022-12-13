@@ -11,7 +11,16 @@ public class BlogVo {
 	private String postTitle;
 	private String contents;
 	private String regDate;
+	private Long postNo;
 	
+
+	public Long getPostNo() {
+		return postNo;
+	}
+
+	public void setPostNo(Long postNo) {
+		this.postNo = postNo;
+	}
 
 	public String getName() {
 		return name;
@@ -89,7 +98,7 @@ public class BlogVo {
 	public String toString() {
 		return "BlogVo [id=" + id + ", title=" + title + ", profile=" + profile + ", name=" + name + ", categoryNo="
 				+ categoryNo + ", categoryTitle=" + categoryTitle + ", postTitle=" + postTitle + ", contents="
-				+ contents + ", regDate=" + regDate + "]";
+				+ contents + ", regDate=" + regDate + ", postNo=" + postNo + "]";
 	}
 
 

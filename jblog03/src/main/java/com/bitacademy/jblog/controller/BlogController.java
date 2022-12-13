@@ -95,12 +95,11 @@ public class BlogController {
 		return "blog/admin-write";
 	}
 	
-	@RequestMapping(value={"/admin/write/{categoryNo}"}, method=RequestMethod.POST)
-	public String adminWrite(@PathVariable("id") String id, @PathVariable("categoryNo") Long categoryNo, PostVo postVo){
-		System.out.println("categoryNo"+categoryNo);
-		System.out.println("postVo"+postVo);
-		postVo.setCategoryNo((long) 14);
-		postService.writePost(postVo);		
+	@RequestMapping(value={"/admin/write"}, method=RequestMethod.POST)
+	public String adminWrite(@PathVariable("id") String id, PostVo postVo, Model model) {
+		model.addAttribute("postVo", postVo);
+		postService.writePost(postVo);
+		System.out.println(postVo);
 		return "redirect:/"+id;
 	}
 }

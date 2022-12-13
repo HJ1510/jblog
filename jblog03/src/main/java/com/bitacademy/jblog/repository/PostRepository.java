@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.jblog.vo.CategoryVo;
 import com.bitacademy.jblog.vo.PostVo;
@@ -19,8 +20,7 @@ public class PostRepository {
 		return sqlSession.selectList("post.findCategoryTitle", id);
 	}
 
-	public Object insert(PostVo postVo) {
-		return sqlSession.insert("post.insert", postVo);
+	public void insertPost(PostVo postVo) {
+		sqlSession.insert("post.insert", postVo);
 	}
-
 }

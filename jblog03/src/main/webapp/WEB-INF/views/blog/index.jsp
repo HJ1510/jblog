@@ -42,10 +42,9 @@
 		<div id="navigation">
 			<h2>카테고리</h2>
 			<ul>
-				<li><a href="">닥치고 스프링</a></li>
-				<li><a href="">스프링 스터디</a></li>
-				<li><a href="">스프링 프로젝트</a></li>
-				<li><a href="">기타</a></li>
+				<c:forEach items='${categoryList }' var='vo' varStatus='status'>
+					<li><a href="">${vo.title }</a></li>
+				</c:forEach>
 			</ul>
 		</div>
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

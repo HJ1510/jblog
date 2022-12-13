@@ -45,6 +45,8 @@ public class BlogController {
 			categoeyNo = pathNo1.get();
 			postNo = pathNo2.get();
 		}
+		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("list", blogService.getContentsList());
 		return "blog/index";
 	}

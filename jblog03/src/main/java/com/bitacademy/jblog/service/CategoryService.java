@@ -15,7 +15,7 @@ public class CategoryService {
 	private CategoryRepository categoryRepository;
 
 	public List<CategoryVo> getCategoryList(String id) {
-		return categoryRepository.findAllById(id);
+		return categoryRepository.findCategoryById(id);
 	}
 
 	public void insertCategory(CategoryVo categoryVo) {

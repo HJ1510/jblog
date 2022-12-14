@@ -1,6 +1,8 @@
 package com.bitacademy.jblog.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.jblog.service.BlogService;
 import com.bitacademy.jblog.service.CategoryService;
@@ -39,29 +40,34 @@ public class BlogController {
 		Long categoeyNo = 0L;
 		Long postNo = 0L;
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
 		if(pathNo1.isPresent()) {
 			categoeyNo = pathNo1.get();
 		} else if(pathNo2.isPresent()) {
 			categoeyNo = pathNo1.get();
+			postNo = pathNo2.get();
 		}
 		List<CategoryVo> categoryList = categoryService.getCategoryList(id);
 		model.addAttribute("categoryList", categoryList);
-		
-		model.addAttribute("list", blogService.getContentsList());
+	
 		return "blog/index";
 	}
 	
 	@RequestMapping(value={"/admin","/admin/basic"}, method=RequestMethod.GET)
 	public String adminBasic(@PathVariable("id") String id, Model model) { //authuser id==id인지 체크! 
+		BlogVo blogVo = blogService.findBlog(id);
 		model.addAttribute("id", id);	
-		System.out.println("adminBasic:"+model);
+		model.addAttribute("title", blogVo.getTitle());
+		System.out.println("adminBasic:"+blogVo);
 		return "blog/admin-basic"; 
 	}
 	
 	@RequestMapping(value={"/admin","/admin/basic"}, method=RequestMethod.POST)
-	public String adminBasic(@PathVariable("id") String id, BlogVo blogVo) { //authuser id==id인지 체크! 
-		blogVo.setId(blogVo.getId());
+	public String adminBasic(@PathVariable("id") String id, BlogVo blogVo, Model model) { //authuser id==id인지 체크! 
+		model.addAttribute("blogVo", blogVo);		
 		blogService.updateBlogBasic(blogVo);
+		System.out.println("updateBlogBasic:"+blogVo);
 		return "redirect:/"+id;
 	}
 	
@@ -74,12 +80,8 @@ public class BlogController {
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.POST)
 	public String insertCategory(
-			@PathVariable("id") String id,
-			@RequestParam(value="title", required=true, defaultValue="") String title,
-			@RequestParam(value="desc", required=true, defaultValue="") String desc,
-			@RequestParam(value="no", required=true, defaultValue="") Long no,
-			CategoryVo categoryVo){
-		categoryVo.setId(id);
+			@PathVariable("id") String id, CategoryVo categoryVo, Model model){
+		model.addAttribute("categoryVo", categoryVo);
 		categoryService.insertCategory(categoryVo);
 		return "redirect:/"+id+"/admin/category";
 	}

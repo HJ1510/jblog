@@ -24,8 +24,8 @@ public class CategoryRepository {
 		System.out.println("CategoryRepository:"+categoryVo);
 	}
 
-	public List<CategoryVo> findAllById(String id) {
-		return sqlSession.selectList("category.findAllById", id);
+	public List<CategoryVo> findCategoryById(String id) {
+		return sqlSession.selectList("category.findCategoryById", id);
 	}
 
 	public void deleteByNo(Long no) {

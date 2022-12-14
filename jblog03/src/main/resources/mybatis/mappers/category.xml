@@ -13,9 +13,14 @@
 		]]>		
 	</insert>
 	
-	<select id="findAllById" resultType="categoryvo">
+	<select id="findCategoryById" resultType="categoryvo">
 		<![CDATA[ 
-		SELECT c.no, c.title , c.`desc`, category_no , count(*) as countPost from post p , category c where p.category_no = c.`no` and id =#{id } group by category_no order by c.no desc; 
+		SELECT c.no, c.title, c.desc , IFNULL(countPost, 0) as countPost
+		from category c left outer join (SELECT p.category_no , count(p.no) as countPost from post p group by category_no) as p
+		on p.category_no = c.no 
+		where id=#{id }
+		group by c.no 
+		order by c.no desc; 
 		]]>
 	</select>
 	

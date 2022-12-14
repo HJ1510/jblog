@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="center-content">
-		<c:import url="/WEB-INF/views/includes/logomenu.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/main-header.jsp"></c:import>
 		<form class="search-form">
 			<fieldset>
 				<input type="text" name="keyword" />

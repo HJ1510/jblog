@@ -58,10 +58,18 @@ DELETE from category where no=11;
 -- admin write
 INSERT into post values(null, '두번째 글입니다', '스프링 공부진행중', now(), 6);
 INSERT into post values(null, '1208', '일기 씀', now(), 8);
-INSERT into post values(null, '또치 첫 글', '또치예요 블로그 시작합니다', now(), );
+INSERT into post values(null, '도우너 첫 글', '도우너예요 블로그 시작합니다', now(), 7);
 SELECT c.no as categoryNo, c.title as categoryTitle from category c, blog b where b.id = c.id and b.id = 'go' order by c.no asc;
 SELECT p.category_no as categoryNo from post p;
 SELECT * from post p , category c where p.category_no = c.no;
 
 -- blog index
-SELECT b.title , b.profile , c.title as categoryTitle, p.title as postTitle, p.contents, p.reg_date as regDate from blog b , category c , post p where b.id =c.id and c.`no` =p.category_no ; 
+SELECT b.title , b.profile , c.title as categoryTitle, p.title as postTitle, p.contents, p.reg_date as regDate from blog b , category c , post p where b.id =c.id and c.`no` =p.category_no ;
+
+SELECT title , contents, reg_date as regDate from post p where max(regDate);
+
+-- 가장 최근 글
+SELECT c.title as categoryTitle, p.title as postTitle , p.contents FROM post p, category c where p.category_no =c.`no` and id ='go' ORDER BY reg_date DESC LIMIT 1;
+
+-- 카테고리 리스트(최근글 날짜 포함)
+SELECT c.title as categoryTitle, p.reg_date as regDate() FROM post p, category c where p.category_no =c.`no` and id='go' ORDER BY reg_date desc;

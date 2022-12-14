@@ -15,7 +15,7 @@
 	
 	<select id="findAllById" resultType="categoryvo">
 		<![CDATA[ 
-		SELECT c.no, c.title, c.desc from category c, blog b where b.id = c.id and b.id = #{id } order by c.no desc 
+		SELECT c.no, c.title , c.`desc`, category_no , count(*) as countPost from post p , category c where p.category_no = c.`no` and id =#{id } group by category_no order by c.no desc; 
 		]]>
 	</select>
 	

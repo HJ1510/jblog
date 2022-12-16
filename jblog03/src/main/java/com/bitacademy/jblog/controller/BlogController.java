@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.jblog.service.BlogService;
 import com.bitacademy.jblog.service.CategoryService;
@@ -80,8 +81,12 @@ public class BlogController {
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.POST)
 	public String insertCategory(
-			@PathVariable("id") String id, CategoryVo categoryVo, Model model){
+			@PathVariable("id") String id, 
+			//@RequestParam("title") String title, 
+			CategoryVo categoryVo, Model model){
 		model.addAttribute("categoryVo", categoryVo);
+		model.addAttribute("title", title);	
+		System.out.println(title);
 		categoryService.insertCategory(categoryVo);
 		return "redirect:/"+id+"/admin/category";
 	}

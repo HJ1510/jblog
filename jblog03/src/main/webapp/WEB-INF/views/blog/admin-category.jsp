@@ -34,7 +34,12 @@
 						<td>${vo.title }</td>
 						<td>${vo.countPost }</td>
 						<td>${vo.desc }</td>
-						<td><a href="${pageContext.request.contextPath }/${id }/admin/category/delete/${vo.no }"><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a></td>
+						<td>
+							<c:if test="${vo.countPost == 0}">
+								<a href="${pageContext.request.contextPath }/${id }/admin/category/delete/${vo.no }"><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></a>
+							</c:if>
+							
+						</td>
 					</tr> 
 					</c:forEach>			  
 				</table>

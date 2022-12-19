@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.jblog.service.BlogService;
 import com.bitacademy.jblog.service.CategoryService;
@@ -65,10 +66,15 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value={"/admin","/admin/basic"}, method=RequestMethod.POST)
-	public String adminBasic(@PathVariable("id") String id, BlogVo blogVo, Model model) { //authuser id==id인지 체크! 
-		model.addAttribute("blogVo", blogVo);		
+	public String adminBasic(@PathVariable("id") String id, 
+							@RequestParam("title") String title, 
+//							@RequestParam("logo-file") MultipartFile multipartFile,
+							BlogVo blogVo) { //authuser id==id인지 체크!
+		System.out.println(id);
+		System.out.println(title);
+		
 		blogService.updateBlogBasic(blogVo);
-		System.out.println("updateBlogBasic:"+blogVo);
+//		System.out.println("updateBlogBasic:"+blogVo);
 		return "redirect:/"+id;
 	}
 	
@@ -82,7 +88,7 @@ public class BlogController {
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.POST)
 	public String insertCategory(
 			@PathVariable("id") String id, 
-			//@RequestParam("title") String title, 
+			@RequestParam("title") String title, 
 			CategoryVo categoryVo, Model model){
 		model.addAttribute("categoryVo", categoryVo);
 		model.addAttribute("title", title);	

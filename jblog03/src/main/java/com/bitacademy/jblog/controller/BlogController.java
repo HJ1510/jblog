@@ -73,9 +73,11 @@ public class BlogController {
 		System.out.println(id);
 		System.out.println(title);
 		
+		blogVo.setTitle(title);
 		blogService.updateBlogBasic(blogVo);
 //		System.out.println("updateBlogBasic:"+blogVo);
 		return "redirect:/"+id;
+//		return "blog/admin-basic";
 	}
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.GET)

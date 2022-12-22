@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.jblog.service.BlogService;
 import com.bitacademy.jblog.service.CategoryService;
+import com.bitacademy.jblog.service.FileUploadService;
 import com.bitacademy.jblog.service.PostService;
 import com.bitacademy.jblog.vo.BlogVo;
 import com.bitacademy.jblog.vo.CategoryVo;
@@ -33,6 +34,9 @@ public class BlogController {
 	
 	@Autowired
 	private PostService postService;
+	
+	@Autowired
+	private FileUploadService fileUploadService;
 	
 	@RequestMapping({"", "/{pathNo1}", "/{pathNo1}/{pathNo2}"})
 	public String index(
@@ -68,16 +72,21 @@ public class BlogController {
 	@RequestMapping(value={"/admin","/admin/basic"}, method=RequestMethod.POST)
 	public String adminBasic(@PathVariable("id") String id, 
 							@RequestParam("title") String title, 
-//							@RequestParam("logo-file") MultipartFile multipartFile,
-							BlogVo blogVo) { //authuser id==id인지 체크!
+							@RequestParam("logo-file") MultipartFile multipartFile,
+							BlogVo blogVo, Model model) { //authuser id==id인지 체크!
 		System.out.println(id);
 		System.out.println(title);
 		
 		blogVo.setTitle(title);
 		blogService.updateBlogBasic(blogVo);
-//		System.out.println("updateBlogBasic:"+blogVo);
-		return "redirect:/"+id;
-//		return "blog/admin-basic";
+		System.out.println("updateBlogBasic:"+blogVo);
+		
+		String url = fileUploadService.restore(multipartFile);
+		blogVo.setProfile(url);
+		
+		System.out.println("fileUploadService:"+url);
+//		return "redirect:/"+id;
+		return "redirect:/"+id+"/admin/basic";
 	}
 	
 	@RequestMapping(value={"/admin/category"}, method=RequestMethod.GET)
